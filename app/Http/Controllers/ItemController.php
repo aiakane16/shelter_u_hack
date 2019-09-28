@@ -29,9 +29,17 @@ class ItemController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     * 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     * @bodyParam title string required 
+     * @bodyParam description string required 
+     * @bodyParam quantity int required 
+     * @bodyParam unit string required. Example kg
+     * @bodyParam unitCost float required. Example 100.00
+     * @bodyParam amount float required value is equal to quantity x unitCost
+     * @bodyParam po_id Procurement Officer for field prepared by
+     * @bodyParam bundle_id optional 
      */
     public function store(Request $request)
     {

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateItemTable extends Migration
+class CreateProcurementOfficersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class UpdateItemTable extends Migration
      */
     public function up()
     {
-        Schema::table('items', function (Blueprint $table) {
-            $table->text('description');
+        Schema::create('procurement_officers', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +26,6 @@ class UpdateItemTable extends Migration
      */
     public function down()
     {
-        Schema::table('items', function (Blueprint $table) {
-            $table->dropColumn('description');
-        });  
+        Schema::dropIfExists('procurement_officers');
     }
 }

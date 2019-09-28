@@ -4,9 +4,19 @@ namespace App\Http\Controllers;
 
 use App\PurchaseOrder;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Routing\ResponseFactory;
 
 class PurchaseOrderController extends Controller
 {
+    protected $purchaseOrder;
+
+    protected $response;
+
+    public function __construct(ResponseFactory $response, PurchaseOrder $purchaseOrder){
+       $this->purchaseOrder = $purchaseOrder;
+       $this->response = $response;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,18 +24,9 @@ class PurchaseOrderController extends Controller
      */
     public function index()
     {
-        //
+        return $this->purchaseOrder->all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +36,7 @@ class PurchaseOrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $this->response->json($this->purchaseOrder->create($request->all()),201);
     }
 
     /**
@@ -46,18 +47,7 @@ class PurchaseOrderController extends Controller
      */
     public function show(PurchaseOrder $purchaseOrder)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\PurchaseOrder  $purchaseOrder
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(PurchaseOrder $purchaseOrder)
-    {
-        //
+        return $this->response->json($purchaseOrder);
     }
 
     /**
@@ -69,7 +59,7 @@ class PurchaseOrderController extends Controller
      */
     public function update(Request $request, PurchaseOrder $purchaseOrder)
     {
-        //
+        return $this->response->json($purchaseOrder->update($request->all()),202);
     }
 
     /**
@@ -80,6 +70,6 @@ class PurchaseOrderController extends Controller
      */
     public function destroy(PurchaseOrder $purchaseOrder)
     {
-        //
+        return $this->response->json(['deleted'=>$purchaseOrder->delete()],204);
     }
 }

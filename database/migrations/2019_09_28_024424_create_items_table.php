@@ -15,10 +15,13 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('po_id');
+            $table->integer('bundle_id');
+            $table->text('description');
             $table->string('title');
             $table->float('quantity');
             $table->string('unit');
-            $table->float('unitCost');
+            $table->float('unitCost')->nullable();
             $table->float('amount');
             $table->timestamps();
         });

@@ -15,6 +15,14 @@ class CreatePurchaseOrdersTable extends Migration
     {
         Schema::create('purchase_orders', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('po_id');
+            $table->integer('bundle_id')->nullable();
+            $table->date('date_ordered');
+            $table->integer('top');
+            $table->date('warranty');
+            $table->date('date_needed');
+            $table->text('remarks')->nullable();
+            $table->text('delivery_address');
             $table->timestamps();
         });
     }

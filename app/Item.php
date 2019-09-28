@@ -12,6 +12,8 @@ class Item extends Model
         'quantity',
         'unit',
         'unitCost',
-        'amount'
+        'amount',
+        'po_id',
+        'bundle_id'
     ];
 }
