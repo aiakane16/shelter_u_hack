@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Routing\ResponseFactory;
 
 class SupplierSupplierItemController extends Controller
 {
@@ -25,7 +26,7 @@ class SupplierSupplierItemController extends Controller
      */
     public function index()
     {
-        return $this->response->json($this->supplier->items)
+        return $this->response->json($this->supplier->items);
     }
 
     /**
