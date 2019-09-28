@@ -16,6 +16,10 @@ class CreatePurchaseOrdersTable extends Migration
         Schema::create('purchase_orders', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('supplier_id');
+            $table->integer('top');
+            $table->date('warranty');
+            $table->date('date_needed');
+            $table->text('delivery_address');
             $table->timestamps();
         });
     }

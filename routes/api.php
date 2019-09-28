@@ -23,6 +23,8 @@ Route::apiResource('purchaseRequest','PurchaseRequestController');
 
 Route::apiResource('procurementOfficer','ProcurementOfficerController');
 
+Route::apiResource('procurementOfficer.invoice','ProcurementOfficerInvoiceController');
+
 Route::apiResource('supplier','SupplierController');
 
 Route::apiResource('supplierItem','SupplierItemController');

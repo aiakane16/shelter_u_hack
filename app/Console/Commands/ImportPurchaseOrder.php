@@ -7,6 +7,7 @@ use League\Csv\Reader;
 use App\PurchaseOrder;
 use App\Invoice;
 use App\InvoiceItem;
+use App\ProcurementOfficer;
 
 class ImportPurchaseOrder extends Command
 {
@@ -51,14 +52,16 @@ class ImportPurchaseOrder extends Command
 
         $data = collect($records)
         ->mapToGroups(function($item,$key){
+            $po = ProcurementOfficer::create(['name' => 'Mr. Procurement Officer']);
+            
             return [
                         $item['Invoice'] => [
                             'stockCode' => $item['StockCode'],
                             'title' => $item['Description'],
                             'quantity' => intval($item['Quantity']),
                             'date_created' => $item['InvoiceDate'],
-                            'unitCost' => intval($item['Price']),
-                            'po_id' => intval($item['Customer ID']),
+                            'unitCost' => floatval($item['Price']),
+                            'po_id' => intval($po->id),
                             'invoice_id' => intval($item['Invoice']),
                             'unit'=>'kg'
                         ]

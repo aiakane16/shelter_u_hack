@@ -14,4 +14,8 @@ class ProcurementOfficer extends Model
     public function purchaseRequests(){
         return $this->hasMany(PurchaseRequest::class,'pr_id','id');
     }
+
+    public function invoices(){
+        return $this->hasMany(Invoice::class,'po_id','id');
+    }
 }

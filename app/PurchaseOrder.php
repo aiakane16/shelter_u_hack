@@ -8,6 +8,10 @@ class PurchaseOrder extends Model
 {
     protected $fillable = [
         'supplier_id',
+        'top',
+        'warranty',
+        'date_needed',
+        'delivery_address'
     ];
 
     public function items(){

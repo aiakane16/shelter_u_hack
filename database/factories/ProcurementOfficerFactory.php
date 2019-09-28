@@ -7,6 +7,6 @@ use Faker\Generator as Faker;
 
 $factory->define(ProcurementOfficer::class, function (Faker $faker) {
     return [
-        //
+        'name' => $faker->name
     ];
 });

@@ -14,10 +14,14 @@ class Invoice extends Model
     ];
 
     public function items(){
-        return $this->hasMany(InvoiceItem::class,'invoice_id','id');
+        return $this->hasMany(InvoiceItem::class,'invoice_id','invoice_no');
     }
 
     public function supplier(){
         return $this->belongsTo(Supplier::class,'supplier_id','id');
+    }
+
+    public function procurementOfficer(){
+        return $this->belongsTo(ProcurementOfficer::class,'po_id','id');
     }
 }
