@@ -4,9 +4,20 @@ namespace App\Http\Controllers;
 
 use App\ProcurementOfficer;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Routing\ResponseFactory;
 
 class ProcurementOfficerController extends Controller
 {
+
+    protected $procurementOfficer;
+
+    protected $response;
+
+    public function __construct(ResponseFactory $response, ProcurementOfficer $procurementOfficer){
+       $this->procurementOfficer = $procurementOfficer;
+       $this->response = $response;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,18 +25,9 @@ class ProcurementOfficerController extends Controller
      */
     public function index()
     {
-        //
+        return $this->response->json($this->procurementOfficer->all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +37,7 @@ class ProcurementOfficerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $this->response->json($this->procurementOfficer->create($request->all()),201);
     }
 
     /**
@@ -46,18 +48,7 @@ class ProcurementOfficerController extends Controller
      */
     public function show(ProcurementOfficer $procurementOfficer)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ProcurementOfficer  $procurementOfficer
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ProcurementOfficer $procurementOfficer)
-    {
-        //
+        return $this->response->json($procurementOfficer);
     }
 
     /**
@@ -69,7 +60,7 @@ class ProcurementOfficerController extends Controller
      */
     public function update(Request $request, ProcurementOfficer $procurementOfficer)
     {
-        //
+        return $this->response->json($procurementOfficer->update($request->all()));
     }
 
     /**
@@ -80,6 +71,6 @@ class ProcurementOfficerController extends Controller
      */
     public function destroy(ProcurementOfficer $procurementOfficer)
     {
-        //
+        return $this->response->json($procurementOfficer->delete());
     }
 }

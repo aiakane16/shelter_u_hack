@@ -15,6 +15,7 @@ class CreateProcurementOfficersTable extends Migration
     {
         Schema::create('procurement_officers', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
             $table->timestamps();
         });
     }

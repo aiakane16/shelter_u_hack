@@ -21,4 +21,7 @@ Route::apiResource('item','ItemController');
 
 Route::apiResource('purchaseOrder','PurchaseOrderController');
 
+Route::apiResource('procurementOfficer','ProcurementOfficerController');
+
+
 
