@@ -13,7 +13,6 @@ class PurchaseRequest extends Model
         "top", //days
         "warranty", //date
         "date_needed",
-        "remarks",
         "delivery_address"
     ];
 

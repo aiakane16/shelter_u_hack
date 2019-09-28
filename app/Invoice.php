@@ -4,14 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PurchaseOrder extends Model
+class Invoice extends Model
 {
     protected $fillable = [
-        'supplier_id',
+        'date_created',
+        'po_id',
+        'invoice_no',
+        'supplier_id'
     ];
 
     public function items(){
-        return $this->hasMany(Item::class,'po_id','id');
+        return $this->hasMany(InvoiceItem::class,'invoice_id','id');
     }
 
     public function supplier(){

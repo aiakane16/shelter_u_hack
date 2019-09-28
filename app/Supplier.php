@@ -10,7 +10,11 @@ class Supplier extends Model
         'name',
     ];
 
-    public function bundles(){
-        return $this->hasMany(ItemBundle::class,'supplier_id','id');
+    public function items(){
+        return $this->hasMany(SUpplierItem::class,'supplier_id','id');
+    }
+
+    public function invoices(){
+        return $this->hasMany(Invoice::class,'invoice_id','id');
     }
 }

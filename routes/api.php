@@ -25,6 +25,16 @@ Route::apiResource('procurementOfficer','ProcurementOfficerController');
 
 Route::apiResource('supplier','SupplierController');
 
+Route::apiResource('supplier/{supplier}/item','SupplierSupplierItemController');
+
+Route::apiResource('supplierItem','SupplierItemController');
+
+Route::apiResource('invoice','InvoiceController');
+
+Route::apiResource('invoiceItem','InvoiceItemController');
+
+
+
 
 
 

@@ -4,15 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ItemBundle extends Model
+class SupplierItem extends Model
 {
     protected $fillable = [
+        'stockCode',
+        'title',
+        'quantity',
+        'unit',
+        'unitCost',
         'supplier_id'
     ];
-
-    public function items(){
-        return $this->hasMany(Item::class,'bundle_id','id');
-    }
 
     public function supplier(){
         return $this->belongsTo(Supplier::class,'supplier_id','id');

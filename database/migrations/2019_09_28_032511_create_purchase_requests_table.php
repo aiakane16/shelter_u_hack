@@ -15,15 +15,14 @@ class CreatePurchaseRequestsTable extends Migration
     {
         Schema::create('purchase_requests', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('po_id');
-            $table->string('no');
-            $table->integer('bundle_id')->nullable();
-            $table->date('date_ordered');
-            $table->integer('top');
-            $table->date('warranty');
-            $table->date('date_needed');
-            $table->text('remarks')->nullable();
-            $table->text('delivery_address');
+            $table->integer('po_id')->nullable();
+            $table->string('no')->nullable();
+            $table->integer('invoice_id')->nullable();
+            $table->date('date_ordered')->nullable();
+            $table->integer('top')->nullable();
+            $table->date('warranty')->nullable();
+            $table->date('date_needed')->nullable();
+            $table->text('delivery_address')->nullable();
             $table->timestamps();
         });
     }
