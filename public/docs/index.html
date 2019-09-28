@@ -199,7 +199,21 @@ fetch(url, {
 <blockquote>
 <p>Example response (200):</p>
 </blockquote>
-<pre><code class="language-json">[]</code></pre>
+<pre><code class="language-json">[
+    {
+        "id": 1,
+        "pr_id": 1,
+        "bundle_id": null,
+        "description": "SAMPLE DESCRIPTION",
+        "title": "SAMPLE TITLE",
+        "quantity": "1",
+        "unit": "kg",
+        "unitCost": "100",
+        "amount": "100",
+        "created_at": "2019-09-28 09:57:33",
+        "updated_at": "2019-09-28 09:57:33"
+    }
+]</code></pre>
 <h3>HTTP Request</h3>
 <p><code>GET api/item</code></p>
 <!-- END_0413e2e68e6b9925e158d12637d2f830 -->
@@ -208,18 +222,11 @@ fetch(url, {
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X POST "http://localhost/api/item?location_id=atque&amp;user_id=me&amp;page=4" \
+<pre><code class="language-bash">curl -X POST "http://localhost/api/item" \
     -H "Content-Type: application/json" \
-    -d '{"user_id":9,"room_id":"consequatur","forever":false}'
+    -d '{"title":"perspiciatis","description":"et","quantity":13,"unit":"porro","unitCost":525394.88159,"amount":310383043.8176274,"po_id":"ut","bundle_id":"dignissimos"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL("http://localhost/api/item");
-
-    let params = {
-            "location_id": "atque",
-            "user_id": "me",
-            "page": "4",
-        };
-    Object.keys(params).forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 let headers = {
     "Content-Type": "application/json",
@@ -227,9 +234,14 @@ let headers = {
 }
 
 let body = {
-    "user_id": 9,
-    "room_id": "consequatur",
-    "forever": false
+    "title": "perspiciatis",
+    "description": "et",
+    "quantity": 13,
+    "unit": "porro",
+    "unitCost": 525394.88159,
+    "amount": 310383043.8176274,
+    "po_id": "ut",
+    "bundle_id": "dignissimos"
 }
 
 fetch(url, {
@@ -253,49 +265,48 @@ fetch(url, {
 </thead>
 <tbody>
 <tr>
-<td>user_id</td>
+<td>title</td>
+<td>string</td>
+<td>required</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>required</td>
+</tr>
+<tr>
+<td>quantity</td>
 <td>integer</td>
 <td>required</td>
-<td>The id of the user.</td>
 </tr>
 <tr>
-<td>room_id</td>
+<td>unit</td>
 <td>string</td>
 <td>optional</td>
-<td>The id of the room.</td>
+<td>required. Example kg</td>
 </tr>
 <tr>
-<td>forever</td>
-<td>boolean</td>
+<td>unitCost</td>
+<td>float</td>
 <td>optional</td>
-<td>Whether to ban the user forever.</td>
+<td>required. Example 100.00</td>
 </tr>
-</tbody>
-</table>
-<h4>Query Parameters</h4>
-<table>
-<thead>
 <tr>
-<th>Parameter</th>
-<th>Status</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>location_id</td>
+<td>amount</td>
+<td>float</td>
 <td>required</td>
-<td>The id of the location.</td>
+<td>value is equal to quantity x unitCost</td>
 </tr>
 <tr>
-<td>user_id</td>
-<td>required</td>
-<td>The id of the user.</td>
+<td>po_id</td>
+<td>Procurement</td>
+<td>optional</td>
+<td>Officer for field prepared by</td>
 </tr>
 <tr>
-<td>page</td>
-<td>required</td>
-<td>The page number.</td>
+<td>bundle_id</td>
+<td>optional</td>
+<td>optional</td>
 </tr>
 </tbody>
 </table>
@@ -320,10 +331,20 @@ fetch(url, {
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
 <blockquote>
-<p>Example response (404):</p>
+<p>Example response (200):</p>
 </blockquote>
 <pre><code class="language-json">{
-    "message": "No query results for model [App\\Item] 1"
+    "id": 1,
+    "pr_id": 1,
+    "bundle_id": null,
+    "description": "SAMPLE DESCRIPTION",
+    "title": "SAMPLE TITLE",
+    "quantity": "1",
+    "unit": "kg",
+    "unitCost": "100",
+    "amount": "100",
+    "created_at": "2019-09-28 09:57:33",
+    "updated_at": "2019-09-28 09:57:33"
 }</code></pre>
 <h3>HTTP Request</h3>
 <p><code>GET api/item/{item}</code></p>
@@ -373,13 +394,13 @@ fetch(url, {
 <h3>HTTP Request</h3>
 <p><code>DELETE api/item/{item}</code></p>
 <!-- END_660a04aa88b794efd55c11d388a19fcf -->
-<!-- START_41cecd4d4c047855daff59caaab2701a -->
+<!-- START_2e1e700449e8660e787b810846801751 -->
 <h2>Display a listing of the resource.</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X GET -G "http://localhost/api/purchaseOrder" </code></pre>
-<pre><code class="language-javascript">const url = new URL("http://localhost/api/purchaseOrder");
+<pre><code class="language-bash">curl -X GET -G "http://localhost/api/purchaseRequest" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/purchaseRequest");
 
 let headers = {
     "Accept": "application/json",
@@ -399,6 +420,7 @@ fetch(url, {
     {
         "id": 1,
         "po_id": 1,
+        "no": "ABC124",
         "bundle_id": null,
         "date_ordered": "2019-09-30",
         "top": 30,
@@ -406,33 +428,20 @@ fetch(url, {
         "date_needed": "2019-10-10",
         "remarks": null,
         "delivery_address": "Unit 123,Building",
-        "created_at": "2019-09-28 06:40:11",
-        "updated_at": "2019-09-28 06:40:11"
-    },
-    {
-        "id": 2,
-        "po_id": 1,
-        "bundle_id": null,
-        "date_ordered": "2019-09-30",
-        "top": 30,
-        "warranty": "2019-10-30",
-        "date_needed": "2019-10-10",
-        "remarks": null,
-        "delivery_address": "Unit 123,Building",
-        "created_at": "2019-09-28 06:41:06",
-        "updated_at": "2019-09-28 06:41:06"
+        "created_at": "2019-09-28 09:57:32",
+        "updated_at": "2019-09-28 09:57:32"
     }
 ]</code></pre>
 <h3>HTTP Request</h3>
-<p><code>GET api/purchaseOrder</code></p>
-<!-- END_41cecd4d4c047855daff59caaab2701a -->
-<!-- START_98e58aecd58ce699f4e2ea17c70c1fba -->
+<p><code>GET api/purchaseRequest</code></p>
+<!-- END_2e1e700449e8660e787b810846801751 -->
+<!-- START_d3ec7ab1bb948dba5330577502c01786 -->
 <h2>Store a newly created resource in storage.</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X POST "http://localhost/api/purchaseOrder" </code></pre>
-<pre><code class="language-javascript">const url = new URL("http://localhost/api/purchaseOrder");
+<pre><code class="language-bash">curl -X POST "http://localhost/api/purchaseRequest" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/purchaseRequest");
 
 let headers = {
     "Accept": "application/json",
@@ -446,15 +455,15 @@ fetch(url, {
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
 <h3>HTTP Request</h3>
-<p><code>POST api/purchaseOrder</code></p>
-<!-- END_98e58aecd58ce699f4e2ea17c70c1fba -->
-<!-- START_8de3798435a0f719ce772a3e81504fde -->
+<p><code>POST api/purchaseRequest</code></p>
+<!-- END_d3ec7ab1bb948dba5330577502c01786 -->
+<!-- START_7d772e57ec6f5d3f00fbf6821020bd98 -->
 <h2>Display the specified resource.</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X GET -G "http://localhost/api/purchaseOrder/1" </code></pre>
-<pre><code class="language-javascript">const url = new URL("http://localhost/api/purchaseOrder/1");
+<pre><code class="language-bash">curl -X GET -G "http://localhost/api/purchaseRequest/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/purchaseRequest/1");
 
 let headers = {
     "Accept": "application/json",
@@ -473,6 +482,7 @@ fetch(url, {
 <pre><code class="language-json">{
     "id": 1,
     "po_id": 1,
+    "no": "ABC124",
     "bundle_id": null,
     "date_ordered": "2019-09-30",
     "top": 30,
@@ -480,19 +490,40 @@ fetch(url, {
     "date_needed": "2019-10-10",
     "remarks": null,
     "delivery_address": "Unit 123,Building",
-    "created_at": "2019-09-28 06:40:11",
-    "updated_at": "2019-09-28 06:40:11"
+    "created_at": "2019-09-28 09:57:32",
+    "updated_at": "2019-09-28 09:57:32",
+    "items": [
+        {
+            "id": 1,
+            "pr_id": 1,
+            "bundle_id": null,
+            "description": "SAMPLE DESCRIPTION",
+            "title": "SAMPLE TITLE",
+            "quantity": "1",
+            "unit": "kg",
+            "unitCost": "100",
+            "amount": "100",
+            "created_at": "2019-09-28 09:57:33",
+            "updated_at": "2019-09-28 09:57:33"
+        }
+    ],
+    "prepared_by": {
+        "id": 1,
+        "name": "Mr. Procurement Officer",
+        "created_at": "2019-09-28 09:57:31",
+        "updated_at": "2019-09-28 09:57:31"
+    }
 }</code></pre>
 <h3>HTTP Request</h3>
-<p><code>GET api/purchaseOrder/{purchaseOrder}</code></p>
-<!-- END_8de3798435a0f719ce772a3e81504fde -->
-<!-- START_f1c1472b928549e8a4747d6aac43d6cc -->
+<p><code>GET api/purchaseRequest/{purchaseRequest}</code></p>
+<!-- END_7d772e57ec6f5d3f00fbf6821020bd98 -->
+<!-- START_812193b05a03278378410579633419af -->
 <h2>Update the specified resource in storage.</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X PUT "http://localhost/api/purchaseOrder/1" </code></pre>
-<pre><code class="language-javascript">const url = new URL("http://localhost/api/purchaseOrder/1");
+<pre><code class="language-bash">curl -X PUT "http://localhost/api/purchaseRequest/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/purchaseRequest/1");
 
 let headers = {
     "Accept": "application/json",
@@ -506,16 +537,16 @@ fetch(url, {
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
 <h3>HTTP Request</h3>
-<p><code>PUT api/purchaseOrder/{purchaseOrder}</code></p>
-<p><code>PATCH api/purchaseOrder/{purchaseOrder}</code></p>
-<!-- END_f1c1472b928549e8a4747d6aac43d6cc -->
-<!-- START_2852ac0317d3288daa80d150b20d63ad -->
+<p><code>PUT api/purchaseRequest/{purchaseRequest}</code></p>
+<p><code>PATCH api/purchaseRequest/{purchaseRequest}</code></p>
+<!-- END_812193b05a03278378410579633419af -->
+<!-- START_3f87fdc2a4ca36a51e7c1b33b688d760 -->
 <h2>Remove the specified resource from storage.</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X DELETE "http://localhost/api/purchaseOrder/1" </code></pre>
-<pre><code class="language-javascript">const url = new URL("http://localhost/api/purchaseOrder/1");
+<pre><code class="language-bash">curl -X DELETE "http://localhost/api/purchaseRequest/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/purchaseRequest/1");
 
 let headers = {
     "Accept": "application/json",
@@ -529,8 +560,260 @@ fetch(url, {
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
 <h3>HTTP Request</h3>
-<p><code>DELETE api/purchaseOrder/{purchaseOrder}</code></p>
-<!-- END_2852ac0317d3288daa80d150b20d63ad -->
+<p><code>DELETE api/purchaseRequest/{purchaseRequest}</code></p>
+<!-- END_3f87fdc2a4ca36a51e7c1b33b688d760 -->
+<!-- START_0f3258c5e882fde680b2358c0cfdcd41 -->
+<h2>Display a listing of the resource.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/api/procurementOfficer" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/procurementOfficer");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">[
+    {
+        "id": 1,
+        "name": "Mr. Procurement Officer",
+        "created_at": "2019-09-28 09:57:31",
+        "updated_at": "2019-09-28 09:57:31"
+    }
+]</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/procurementOfficer</code></p>
+<!-- END_0f3258c5e882fde680b2358c0cfdcd41 -->
+<!-- START_14c364aec29b18ce6cbd75a7567b9a8a -->
+<h2>Store a newly created resource in storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://localhost/api/procurementOfficer" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/procurementOfficer");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/procurementOfficer</code></p>
+<!-- END_14c364aec29b18ce6cbd75a7567b9a8a -->
+<!-- START_8efd49b67ad357b29f3d6b8a1ad36384 -->
+<h2>Display the specified resource.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/api/procurementOfficer/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/procurementOfficer/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 1,
+    "name": "Mr. Procurement Officer",
+    "created_at": "2019-09-28 09:57:31",
+    "updated_at": "2019-09-28 09:57:31"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/procurementOfficer/{procurementOfficer}</code></p>
+<!-- END_8efd49b67ad357b29f3d6b8a1ad36384 -->
+<!-- START_fbc5886ac45d06ee883504fbde8264bd -->
+<h2>Update the specified resource in storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT "http://localhost/api/procurementOfficer/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/procurementOfficer/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>PUT api/procurementOfficer/{procurementOfficer}</code></p>
+<p><code>PATCH api/procurementOfficer/{procurementOfficer}</code></p>
+<!-- END_fbc5886ac45d06ee883504fbde8264bd -->
+<!-- START_48abcddfb2ecc47df8ed0049b43a1c41 -->
+<h2>Remove the specified resource from storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE "http://localhost/api/procurementOfficer/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/procurementOfficer/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>DELETE api/procurementOfficer/{procurementOfficer}</code></p>
+<!-- END_48abcddfb2ecc47df8ed0049b43a1c41 -->
+<!-- START_3ef8b7ef66b9b6dbdeee318a0edd8ec7 -->
+<h2>Display a listing of the resource.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/api/supplier" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/supplier");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">[]</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/supplier</code></p>
+<!-- END_3ef8b7ef66b9b6dbdeee318a0edd8ec7 -->
+<!-- START_77f932b80ed5d9aad8ffc0b785061318 -->
+<h2>Store a newly created resource in storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://localhost/api/supplier" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/supplier");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/supplier</code></p>
+<!-- END_77f932b80ed5d9aad8ffc0b785061318 -->
+<!-- START_73b78fcd5846de2edaa5e14c89760de4 -->
+<h2>Display the specified resource.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost/api/supplier/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/supplier/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "No query results for model [App\\Supplier] 1"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/supplier/{supplier}</code></p>
+<!-- END_73b78fcd5846de2edaa5e14c89760de4 -->
+<!-- START_e869b3ba3123775bddeccb9470123eb3 -->
+<h2>Update the specified resource in storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT "http://localhost/api/supplier/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/supplier/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>PUT api/supplier/{supplier}</code></p>
+<p><code>PATCH api/supplier/{supplier}</code></p>
+<!-- END_e869b3ba3123775bddeccb9470123eb3 -->
+<!-- START_87018cb02d8272074c0da980d45f8700 -->
+<h2>Remove the specified resource from storage.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE "http://localhost/api/supplier/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost/api/supplier/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>DELETE api/supplier/{supplier}</code></p>
+<!-- END_87018cb02d8272074c0da980d45f8700 -->
       </div>
       <div class="dark-box">
                         <div class="lang-selector">

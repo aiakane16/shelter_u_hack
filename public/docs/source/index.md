@@ -233,7 +233,21 @@ fetch(url, {
 > Example response (200):
 
 ```json
-[]
+[
+    {
+        "id": 1,
+        "pr_id": 1,
+        "bundle_id": null,
+        "description": "SAMPLE DESCRIPTION",
+        "title": "SAMPLE TITLE",
+        "quantity": "1",
+        "unit": "kg",
+        "unitCost": "100",
+        "amount": "100",
+        "created_at": "2019-09-28 09:57:33",
+        "updated_at": "2019-09-28 09:57:33"
+    }
+]
 ```
 
 ### HTTP Request
@@ -248,21 +262,14 @@ fetch(url, {
 > Example request:
 
 ```bash
-curl -X POST "http://localhost/api/item?location_id=atque&user_id=me&page=4" \
+curl -X POST "http://localhost/api/item" \
     -H "Content-Type: application/json" \
-    -d '{"user_id":9,"room_id":"consequatur","forever":false}'
+    -d '{"title":"perspiciatis","description":"et","quantity":13,"unit":"porro","unitCost":525394.88159,"amount":310383043.8176274,"po_id":"ut","bundle_id":"dignissimos"}'
 
 ```
 
 ```javascript
 const url = new URL("http://localhost/api/item");
-
-    let params = {
-            "location_id": "atque",
-            "user_id": "me",
-            "page": "4",
-        };
-    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
 let headers = {
     "Content-Type": "application/json",
@@ -270,9 +277,14 @@ let headers = {
 }
 
 let body = {
-    "user_id": 9,
-    "room_id": "consequatur",
-    "forever": false
+    "title": "perspiciatis",
+    "description": "et",
+    "quantity": 13,
+    "unit": "porro",
+    "unitCost": 525394.88159,
+    "amount": 310383043.8176274,
+    "po_id": "ut",
+    "bundle_id": "dignissimos"
 }
 
 fetch(url, {
@@ -293,16 +305,14 @@ fetch(url, {
 
 Parameter | Type | Status | Description
 --------- | ------- | ------- | ------- | -----------
-    user_id | integer |  required  | The id of the user.
-    room_id | string |  optional  | The id of the room.
-    forever | boolean |  optional  | Whether to ban the user forever.
-#### Query Parameters
-
-Parameter | Status | Description
---------- | ------- | ------- | -----------
-    location_id |  required  | The id of the location.
-    user_id |  required  | The id of the user.
-    page |  required  | The page number.
+    title | string |  required  | 
+    description | string |  required  | 
+    quantity | integer |  required  | 
+    unit | string |  optional  | required. Example kg
+    unitCost | float |  optional  | required. Example 100.00
+    amount | float |  required  | value is equal to quantity x unitCost
+    po_id | Procurement |  optional  | Officer for field prepared by
+    bundle_id | optional |  optional  | 
 
 <!-- END_7fefd730898a4d951cad6733d4d477ca -->
 
@@ -332,11 +342,21 @@ fetch(url, {
 ```
 
 
-> Example response (404):
+> Example response (200):
 
 ```json
 {
-    "message": "No query results for model [App\\Item] 1"
+    "id": 1,
+    "pr_id": 1,
+    "bundle_id": null,
+    "description": "SAMPLE DESCRIPTION",
+    "title": "SAMPLE TITLE",
+    "quantity": "1",
+    "unit": "kg",
+    "unitCost": "100",
+    "amount": "100",
+    "created_at": "2019-09-28 09:57:33",
+    "updated_at": "2019-09-28 09:57:33"
 }
 ```
 
@@ -414,17 +434,17 @@ fetch(url, {
 
 <!-- END_660a04aa88b794efd55c11d388a19fcf -->
 
-<!-- START_41cecd4d4c047855daff59caaab2701a -->
+<!-- START_2e1e700449e8660e787b810846801751 -->
 ## Display a listing of the resource.
 
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost/api/purchaseOrder" 
+curl -X GET -G "http://localhost/api/purchaseRequest" 
 ```
 
 ```javascript
-const url = new URL("http://localhost/api/purchaseOrder");
+const url = new URL("http://localhost/api/purchaseRequest");
 
 let headers = {
     "Accept": "application/json",
@@ -447,6 +467,7 @@ fetch(url, {
     {
         "id": 1,
         "po_id": 1,
+        "no": "ABC124",
         "bundle_id": null,
         "date_ordered": "2019-09-30",
         "top": 30,
@@ -454,42 +475,29 @@ fetch(url, {
         "date_needed": "2019-10-10",
         "remarks": null,
         "delivery_address": "Unit 123,Building",
-        "created_at": "2019-09-28 06:40:11",
-        "updated_at": "2019-09-28 06:40:11"
-    },
-    {
-        "id": 2,
-        "po_id": 1,
-        "bundle_id": null,
-        "date_ordered": "2019-09-30",
-        "top": 30,
-        "warranty": "2019-10-30",
-        "date_needed": "2019-10-10",
-        "remarks": null,
-        "delivery_address": "Unit 123,Building",
-        "created_at": "2019-09-28 06:41:06",
-        "updated_at": "2019-09-28 06:41:06"
+        "created_at": "2019-09-28 09:57:32",
+        "updated_at": "2019-09-28 09:57:32"
     }
 ]
 ```
 
 ### HTTP Request
-`GET api/purchaseOrder`
+`GET api/purchaseRequest`
 
 
-<!-- END_41cecd4d4c047855daff59caaab2701a -->
+<!-- END_2e1e700449e8660e787b810846801751 -->
 
-<!-- START_98e58aecd58ce699f4e2ea17c70c1fba -->
+<!-- START_d3ec7ab1bb948dba5330577502c01786 -->
 ## Store a newly created resource in storage.
 
 > Example request:
 
 ```bash
-curl -X POST "http://localhost/api/purchaseOrder" 
+curl -X POST "http://localhost/api/purchaseRequest" 
 ```
 
 ```javascript
-const url = new URL("http://localhost/api/purchaseOrder");
+const url = new URL("http://localhost/api/purchaseRequest");
 
 let headers = {
     "Accept": "application/json",
@@ -507,22 +515,22 @@ fetch(url, {
 
 
 ### HTTP Request
-`POST api/purchaseOrder`
+`POST api/purchaseRequest`
 
 
-<!-- END_98e58aecd58ce699f4e2ea17c70c1fba -->
+<!-- END_d3ec7ab1bb948dba5330577502c01786 -->
 
-<!-- START_8de3798435a0f719ce772a3e81504fde -->
+<!-- START_7d772e57ec6f5d3f00fbf6821020bd98 -->
 ## Display the specified resource.
 
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost/api/purchaseOrder/1" 
+curl -X GET -G "http://localhost/api/purchaseRequest/1" 
 ```
 
 ```javascript
-const url = new URL("http://localhost/api/purchaseOrder/1");
+const url = new URL("http://localhost/api/purchaseRequest/1");
 
 let headers = {
     "Accept": "application/json",
@@ -544,6 +552,7 @@ fetch(url, {
 {
     "id": 1,
     "po_id": 1,
+    "no": "ABC124",
     "bundle_id": null,
     "date_ordered": "2019-09-30",
     "top": 30,
@@ -551,28 +560,49 @@ fetch(url, {
     "date_needed": "2019-10-10",
     "remarks": null,
     "delivery_address": "Unit 123,Building",
-    "created_at": "2019-09-28 06:40:11",
-    "updated_at": "2019-09-28 06:40:11"
+    "created_at": "2019-09-28 09:57:32",
+    "updated_at": "2019-09-28 09:57:32",
+    "items": [
+        {
+            "id": 1,
+            "pr_id": 1,
+            "bundle_id": null,
+            "description": "SAMPLE DESCRIPTION",
+            "title": "SAMPLE TITLE",
+            "quantity": "1",
+            "unit": "kg",
+            "unitCost": "100",
+            "amount": "100",
+            "created_at": "2019-09-28 09:57:33",
+            "updated_at": "2019-09-28 09:57:33"
+        }
+    ],
+    "prepared_by": {
+        "id": 1,
+        "name": "Mr. Procurement Officer",
+        "created_at": "2019-09-28 09:57:31",
+        "updated_at": "2019-09-28 09:57:31"
+    }
 }
 ```
 
 ### HTTP Request
-`GET api/purchaseOrder/{purchaseOrder}`
+`GET api/purchaseRequest/{purchaseRequest}`
 
 
-<!-- END_8de3798435a0f719ce772a3e81504fde -->
+<!-- END_7d772e57ec6f5d3f00fbf6821020bd98 -->
 
-<!-- START_f1c1472b928549e8a4747d6aac43d6cc -->
+<!-- START_812193b05a03278378410579633419af -->
 ## Update the specified resource in storage.
 
 > Example request:
 
 ```bash
-curl -X PUT "http://localhost/api/purchaseOrder/1" 
+curl -X PUT "http://localhost/api/purchaseRequest/1" 
 ```
 
 ```javascript
-const url = new URL("http://localhost/api/purchaseOrder/1");
+const url = new URL("http://localhost/api/purchaseRequest/1");
 
 let headers = {
     "Accept": "application/json",
@@ -590,24 +620,24 @@ fetch(url, {
 
 
 ### HTTP Request
-`PUT api/purchaseOrder/{purchaseOrder}`
+`PUT api/purchaseRequest/{purchaseRequest}`
 
-`PATCH api/purchaseOrder/{purchaseOrder}`
+`PATCH api/purchaseRequest/{purchaseRequest}`
 
 
-<!-- END_f1c1472b928549e8a4747d6aac43d6cc -->
+<!-- END_812193b05a03278378410579633419af -->
 
-<!-- START_2852ac0317d3288daa80d150b20d63ad -->
+<!-- START_3f87fdc2a4ca36a51e7c1b33b688d760 -->
 ## Remove the specified resource from storage.
 
 > Example request:
 
 ```bash
-curl -X DELETE "http://localhost/api/purchaseOrder/1" 
+curl -X DELETE "http://localhost/api/purchaseRequest/1" 
 ```
 
 ```javascript
-const url = new URL("http://localhost/api/purchaseOrder/1");
+const url = new URL("http://localhost/api/purchaseRequest/1");
 
 let headers = {
     "Accept": "application/json",
@@ -625,9 +655,377 @@ fetch(url, {
 
 
 ### HTTP Request
-`DELETE api/purchaseOrder/{purchaseOrder}`
+`DELETE api/purchaseRequest/{purchaseRequest}`
 
 
-<!-- END_2852ac0317d3288daa80d150b20d63ad -->
+<!-- END_3f87fdc2a4ca36a51e7c1b33b688d760 -->
+
+<!-- START_0f3258c5e882fde680b2358c0cfdcd41 -->
+## Display a listing of the resource.
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/procurementOfficer" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/procurementOfficer");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+[
+    {
+        "id": 1,
+        "name": "Mr. Procurement Officer",
+        "created_at": "2019-09-28 09:57:31",
+        "updated_at": "2019-09-28 09:57:31"
+    }
+]
+```
+
+### HTTP Request
+`GET api/procurementOfficer`
+
+
+<!-- END_0f3258c5e882fde680b2358c0cfdcd41 -->
+
+<!-- START_14c364aec29b18ce6cbd75a7567b9a8a -->
+## Store a newly created resource in storage.
+
+> Example request:
+
+```bash
+curl -X POST "http://localhost/api/procurementOfficer" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/procurementOfficer");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`POST api/procurementOfficer`
+
+
+<!-- END_14c364aec29b18ce6cbd75a7567b9a8a -->
+
+<!-- START_8efd49b67ad357b29f3d6b8a1ad36384 -->
+## Display the specified resource.
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/procurementOfficer/1" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/procurementOfficer/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "id": 1,
+    "name": "Mr. Procurement Officer",
+    "created_at": "2019-09-28 09:57:31",
+    "updated_at": "2019-09-28 09:57:31"
+}
+```
+
+### HTTP Request
+`GET api/procurementOfficer/{procurementOfficer}`
+
+
+<!-- END_8efd49b67ad357b29f3d6b8a1ad36384 -->
+
+<!-- START_fbc5886ac45d06ee883504fbde8264bd -->
+## Update the specified resource in storage.
+
+> Example request:
+
+```bash
+curl -X PUT "http://localhost/api/procurementOfficer/1" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/procurementOfficer/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`PUT api/procurementOfficer/{procurementOfficer}`
+
+`PATCH api/procurementOfficer/{procurementOfficer}`
+
+
+<!-- END_fbc5886ac45d06ee883504fbde8264bd -->
+
+<!-- START_48abcddfb2ecc47df8ed0049b43a1c41 -->
+## Remove the specified resource from storage.
+
+> Example request:
+
+```bash
+curl -X DELETE "http://localhost/api/procurementOfficer/1" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/procurementOfficer/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`DELETE api/procurementOfficer/{procurementOfficer}`
+
+
+<!-- END_48abcddfb2ecc47df8ed0049b43a1c41 -->
+
+<!-- START_3ef8b7ef66b9b6dbdeee318a0edd8ec7 -->
+## Display a listing of the resource.
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/supplier" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/supplier");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+[]
+```
+
+### HTTP Request
+`GET api/supplier`
+
+
+<!-- END_3ef8b7ef66b9b6dbdeee318a0edd8ec7 -->
+
+<!-- START_77f932b80ed5d9aad8ffc0b785061318 -->
+## Store a newly created resource in storage.
+
+> Example request:
+
+```bash
+curl -X POST "http://localhost/api/supplier" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/supplier");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`POST api/supplier`
+
+
+<!-- END_77f932b80ed5d9aad8ffc0b785061318 -->
+
+<!-- START_73b78fcd5846de2edaa5e14c89760de4 -->
+## Display the specified resource.
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/supplier/1" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/supplier/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (404):
+
+```json
+{
+    "message": "No query results for model [App\\Supplier] 1"
+}
+```
+
+### HTTP Request
+`GET api/supplier/{supplier}`
+
+
+<!-- END_73b78fcd5846de2edaa5e14c89760de4 -->
+
+<!-- START_e869b3ba3123775bddeccb9470123eb3 -->
+## Update the specified resource in storage.
+
+> Example request:
+
+```bash
+curl -X PUT "http://localhost/api/supplier/1" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/supplier/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`PUT api/supplier/{supplier}`
+
+`PATCH api/supplier/{supplier}`
+
+
+<!-- END_e869b3ba3123775bddeccb9470123eb3 -->
+
+<!-- START_87018cb02d8272074c0da980d45f8700 -->
+## Remove the specified resource from storage.
+
+> Example request:
+
+```bash
+curl -X DELETE "http://localhost/api/supplier/1" 
+```
+
+```javascript
+const url = new URL("http://localhost/api/supplier/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`DELETE api/supplier/{supplier}`
+
+
+<!-- END_87018cb02d8272074c0da980d45f8700 -->
 
 
