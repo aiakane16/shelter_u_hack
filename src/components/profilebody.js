@@ -1,6 +1,6 @@
 import React from "react";
 
-function Header() {
+function ProfileBody() {
   return (
     <header className="masthead">
       <div className="container h-100">
@@ -10,7 +10,7 @@ function Header() {
               <a
                 href="#download"
                 className="btn btn-outline btn-lg js-scroll-trigger"
-                style={{ "margin-bottom": "25px", width: "400px" }}
+                style={{ "margin-bottom": "25px", width: "500px" }}
               >
                 Business Profile
               </a>
@@ -18,7 +18,7 @@ function Header() {
               <a
                 href="#download"
                 className="btn btn-outline btn-lg js-scroll-trigger"
-                style={{ "margin-bottom": "25px", width: "400px" }}
+                style={{ "margin-bottom": "25px", width: "500px" }}
               >
                 Create Purchase Order
               </a>
@@ -26,17 +26,17 @@ function Header() {
               <a
                 href="#download"
                 className="btn btn-outline btn-lg js-scroll-trigger"
-                style={{ "margin-bottom": "25px", width: "400px" }}
+                style={{ "margin-bottom": "25px", width: "500px" }}
               >
-                Find Supplier
+                Purchase Request
               </a>
               <br />
               <a
                 href="#download"
                 className="btn btn-outline btn-lg js-scroll-trigger"
-                style={{ "margin-bottom": "25px", width: "400px" }}
+                style={{ "margin-bottom": "25px", width: "500px" }}
               >
-                Find Supplier
+                Track Confirm Purchase
               </a>
             </div>
           </div>
@@ -46,4 +46,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default ProfileBody;
