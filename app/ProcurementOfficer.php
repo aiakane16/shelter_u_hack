@@ -11,7 +11,7 @@ class ProcurementOfficer extends Model
     ];
 
 
-    public function purchaseOrders(){
-        return $this->hasMany(PurchaseOrder::class,'po_id','id');
+    public function purchaseRequests(){
+        return $this->hasMany(PurchaseRequest::class,'pr_id','id');
     }
 }

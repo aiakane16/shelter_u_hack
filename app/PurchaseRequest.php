@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PurchaseOrder extends Model
+class PurchaseRequest extends Model
 {
     protected $fillable = [
         "po_id",
@@ -18,7 +18,7 @@ class PurchaseOrder extends Model
     ];
 
     public function items(){
-        return $this->hasMany(Item::class,'po_id','id');
+        return $this->hasMany(Item::class,'pr_id','id');
     }
 
     public function preparedBy(){

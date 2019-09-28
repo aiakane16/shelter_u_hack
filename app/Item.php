@@ -13,7 +13,7 @@ class Item extends Model
         'unit',
         'unitCost',
         'amount',
-        'po_id',
+        'pr_id',
         'bundle_id'
     ];
 
@@ -21,7 +21,7 @@ class Item extends Model
         return $this->belongsTo(ItemBundle::class,'bundle_id','id');
     }
 
-    public function purchaseOrder(){
-        return $this->belongsTo(PurchaseOrder::class,'po_id','id');
+    public function purchaseRequest(){
+        return $this->belongsTo(PurchaseRequest::class,'pr_id','id');
     }
 }

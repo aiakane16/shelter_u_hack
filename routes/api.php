@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::apiResource('item','ItemController');
 
-Route::apiResource('purchaseOrder','PurchaseOrderController');
+Route::apiResource('purchaseRequest','PurchaseRequestController');
 
 Route::apiResource('procurementOfficer','ProcurementOfficerController');
 
