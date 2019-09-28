@@ -15,6 +15,7 @@ class CreateItemBundlesTable extends Migration
     {
         Schema::create('item_bundles', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('supplier_id');
             $table->timestamps();
         });
     }

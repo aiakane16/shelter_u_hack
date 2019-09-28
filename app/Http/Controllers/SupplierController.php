@@ -4,9 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Routing\ResponseFactory;
+
 
 class SupplierController extends Controller
 {
+
+    protected $supplier;
+
+    protected $response;
+
+    public function __construct(ResponseFactory $response, Supplier $supplier){
+       $this->supplier = $supplier;
+       $this->response = $response;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,17 +26,7 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return $this->response->json($this->supplier->all());
     }
 
     /**
@@ -35,7 +37,7 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $this->response->json($this->supplier->create($request->all()),201);
     }
 
     /**
@@ -46,18 +48,7 @@ class SupplierController extends Controller
      */
     public function show(Supplier $supplier)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Supplier  $supplier
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Supplier $supplier)
-    {
-        //
+        return $this->response->json($supplier);
     }
 
     /**
@@ -69,7 +60,7 @@ class SupplierController extends Controller
      */
     public function update(Request $request, Supplier $supplier)
     {
-        //
+        return $this->response->json($supplier->update($request->all()),202);
     }
 
     /**
@@ -80,6 +71,6 @@ class SupplierController extends Controller
      */
     public function destroy(Supplier $supplier)
     {
-        //
+        return $this->response->json($supplier->delete,204);
     }
 }

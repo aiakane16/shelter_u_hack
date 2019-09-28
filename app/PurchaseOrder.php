@@ -8,6 +8,7 @@ class PurchaseOrder extends Model
 {
     protected $fillable = [
         "po_id",
+        "no",
         "date_ordered", // date
         "top", //days
         "warranty", //date
