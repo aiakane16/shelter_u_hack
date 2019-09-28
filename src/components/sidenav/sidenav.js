@@ -8,7 +8,7 @@ import {
   faImage,
   faCopy
 } from "@fortawesome/free-solid-svg-icons";
-import SubMenu from "./SubMenu";
+import SubMenu from "./submenu";
 import { NavItem, NavLink, Nav } from "reactstrap";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
