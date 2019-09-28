@@ -10,6 +10,7 @@ class InvoiceItem extends Model
         'stockCode',
         'title',
         'quantity',
+        'unit',
         'unitCost',
         'invoice_id'
     ];

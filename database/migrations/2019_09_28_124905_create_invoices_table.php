@@ -18,6 +18,7 @@ class CreateInvoicesTable extends Migration
             $table->date('date_created');
             $table->integer('po_id');
             $table->integer('invoice_no');
+            $table->integer('supplier_id');
             $table->timestamps();
         });
     }

@@ -24,9 +24,9 @@ class SupplierSupplierItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Supplier $supplier)
     {
-        return $this->response->json($this->supplier->items);
+        return $this->response->json($supplier->items);
     }
 
     /**

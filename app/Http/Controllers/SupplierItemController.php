@@ -36,7 +36,7 @@ class SupplierItemController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->response->json($this->supplierItem->create($request->all()));
+        return $this->response->json($this->supplierItem->create($request->all()),201);
     }
 
     /**

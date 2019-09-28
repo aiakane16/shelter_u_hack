@@ -15,7 +15,7 @@ class CreateSupplierItemsTable extends Migration
     {
         Schema::create('supplier_items', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('stockCode');
+            $table->string('stockCode')->nullable();
             $table->string('title');
             $table->integer('quantity');
             $table->string('unit');

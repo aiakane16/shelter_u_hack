@@ -18,6 +18,7 @@ class CreateInvoiceItemsTable extends Migration
             $table->string('stockCode');
             $table->string('title');
             $table->integer('quantity');
+            $table->string('unit');
             $table->integer('unitCost');
             $table->integer('invoice_id');
             $table->timestamps();

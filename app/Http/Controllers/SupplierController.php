@@ -26,7 +26,7 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        return $this->response->json($this->supplier->all());
+        return $this->response->json($this->supplier->load('items')->all());
     }
 
     /**

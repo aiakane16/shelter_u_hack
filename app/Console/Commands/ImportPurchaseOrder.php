@@ -59,7 +59,8 @@ class ImportPurchaseOrder extends Command
                             'date_created' => $item['InvoiceDate'],
                             'unitCost' => intval($item['Price']),
                             'po_id' => intval($item['Customer ID']),
-                            'invoice_id' => intval($item['Invoice'])
+                            'invoice_id' => intval($item['Invoice']),
+                            'unit'=>'kg'
                         ]
                 ];
         })
@@ -69,7 +70,8 @@ class ImportPurchaseOrder extends Command
                 'invoice_no' => $key,
                 'po_id' => $items ? $items[0]['po_id'] : null,
                 'date_created' => $items ? $items[0]['date_created'] : null,
-                'items' => $items
+                'items' => $items,
+                'supplier_id'=>rand(0,99)
             ];
         })
         ->each(function($invoice){
