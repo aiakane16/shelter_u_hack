@@ -1,7 +1,6 @@
 import React from "react";
 import Nav from "../components/nav";
-import Header from "../components/header";
-import Section from "../components/sections";
+import ProfileBody from "../components/profilebody";
 import Footer from "../components/footer";
 import "../App.css";
 
@@ -9,8 +8,7 @@ function App() {
   return (
     <div>
       <Nav />
-      <Header />
-      <Section />
+      <ProfileBody />
       <Footer />
     </div>
   );

@@ -1,19 +1,17 @@
 import React from "react";
+import Form from "../components/form";
 import Nav from "../components/nav";
 import Header from "../components/header";
 import Section from "../components/sections";
 import Footer from "../components/footer";
-import "../App.css";
-
-function App() {
+function ProcureForm() {
   return (
     <div>
       <Nav />
-      <Header />
-      <Section />
+      <Form />
       <Footer />
     </div>
   );
 }
 
-export default App;
+export default ProcureForm;

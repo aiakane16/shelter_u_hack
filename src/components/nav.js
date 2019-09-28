@@ -8,7 +8,7 @@ function Nav() {
     >
       <div className="container">
         <a className="navbar-brand js-scroll-trigger" href="#page-top">
-          Start Bootstrap
+          Start Purchasing
         </a>
         <button
           className="navbar-toggler navbar-toggler-right"

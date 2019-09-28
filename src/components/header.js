@@ -8,14 +8,14 @@ function Header() {
           <div className="col-lg-7 my-auto">
             <div className="header-content mx-auto">
               <h1 className="mb-5">
-                New Age is an app landing page that will help you beautifully
-                showcase your new mobile app, or anything else!
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua
               </h1>
               <a
                 href="#download"
                 className="btn btn-outline btn-xl js-scroll-trigger"
               >
-                Start Now for Free!
+                Find Supplier
               </a>
             </div>
           </div>
@@ -25,7 +25,7 @@ function Header() {
                 <div className="device">
                   <div className="screen">
                     <img
-                      src="img/demo-screen-1.jpg"
+                      src={process.env.PUBLIC_URL + "img/demo-screen-1.jpg"}
                       className="img-fluid"
                       alt=""
                     />
