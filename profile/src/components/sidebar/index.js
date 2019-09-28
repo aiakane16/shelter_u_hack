@@ -43,24 +43,6 @@ function Sidebar() {
               <p>Track Confirmed Purchase</p>
             </a>
           </li>
-          <li>
-            <a href="./tables.html">
-              <i className="now-ui-icons design_bullet-list-67"></i>
-              <p>Table List</p>
-            </a>
-          </li>
-          <li>
-            <a href="./typography.html">
-              <i className="now-ui-icons text_caps-small"></i>
-              <p>Typography</p>
-            </a>
-          </li>
-          <li className="active-pro">
-            <a href="./upgrade.html">
-              <i className="now-ui-icons arrows-1_cloud-download-93"></i>
-              <p>Upgrade to PRO</p>
-            </a>
-          </li>
         </ul>
       </div>
     </div>
