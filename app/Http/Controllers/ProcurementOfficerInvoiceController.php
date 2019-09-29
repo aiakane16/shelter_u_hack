@@ -25,7 +25,7 @@ class ProcurementOfficerInvoiceController extends Controller
      */
     public function index(ProcurementOfficer $procurementOfficer)
     {
-        return $this->response->json($procurementOfficer->all());
+        return $this->response->json($procurementOfficer->invoices);
     }
 
     /**

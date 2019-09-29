@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\ProcurementOfficer;
 
-class ProcurementOfficerSeeder extends Seeder
+class ProcurementSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +11,6 @@ class ProcurementOfficerSeeder extends Seeder
      */
     public function run()
     {
-        factory(ProcurementOfficer::class)->create();   
+        //
     }
 }

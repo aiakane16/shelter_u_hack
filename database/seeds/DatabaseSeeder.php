@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(ProcurementOfficerSeeder::class);
         $this->call(SupplierSeeder::class);
     }
 }

@@ -10,7 +10,8 @@ class Invoice extends Model
         'date_created',
         'po_id',
         'invoice_no',
-        'supplier_id'
+        'supplier_id',
+        'status'
     ];
 
     public function items(){
@@ -23,5 +24,9 @@ class Invoice extends Model
 
     public function procurementOfficer(){
         return $this->belongsTo(ProcurementOfficer::class,'po_id','id');
+    }
+
+    public function delivery(){
+        return $this->hasOnce(DeliveryStatus::class,'invoice_id','id');
     }
 }

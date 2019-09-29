@@ -52,8 +52,6 @@ class ImportPurchaseOrder extends Command
 
         $data = collect($records)
         ->mapToGroups(function($item,$key){
-            $po = ProcurementOfficer::create(['name' => 'Mr. Procurement Officer']);
-            
             return [
                         $item['Invoice'] => [
                             'stockCode' => $item['StockCode'],
@@ -61,9 +59,10 @@ class ImportPurchaseOrder extends Command
                             'quantity' => intval($item['Quantity']),
                             'date_created' => $item['InvoiceDate'],
                             'unitCost' => floatval($item['Price']),
-                            'po_id' => intval($po->id),
+                            'po_id' => 1,
                             'invoice_id' => intval($item['Invoice']),
-                            'unit'=>'kg'
+                            'unit'=>'kg',
+                            'status' => 'paid'
                         ]
                 ];
         })

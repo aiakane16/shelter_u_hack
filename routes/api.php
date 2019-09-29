@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Invoice;
+use App\InvoiceItem;
+use App\ProcurementOfficer;
+use App\Http\Resources\InvoiceItemResource;
+use App\Http\Resources\InvoiceResource;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +40,14 @@ Route::apiResource('invoice','InvoiceController');
 
 Route::apiResource('invoiceItem','InvoiceItemController');
 
+Route::get('/data/{po}', function(Request $request,ProcurementOfficer $po){
+    dd($po->invoices);
+    return InvoiceResource::collection($po->invoices);
+});
+
+Route::get('/data', function(Request $request){
+    return InvoiceItemResource::collection(InvoiceItem::all()->load('invoice.supplier','invoice.procurementOfficer'));
+});
 
 
 
