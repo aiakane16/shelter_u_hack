@@ -142,14 +142,52 @@ def checkInventory(sample, itembundles):
 def rankSupplier(itembundle, suppliers):
     
     
-    return supplier_ranks
+    return 0
 
 
-# In[37]:
+# In[44]:
 
 
 def assignBundles(supplier):
-    
+    itembundles_final = [
+        {
+            'supplier_id': 1,
+            'items': [{
+                'item_id': 100,
+                'price': 5.00
+            },{
+               'item_id': 101,
+                'price': 7.59 
+            },{
+                'item_id': 110,
+                'price': 6.99
+            }]
+        },{
+          'supplier_id': 4,
+            'items': [{
+                'item_id': 127,
+                'price': 10.29
+            },{
+               'item_id': 170,
+                'price': 2.60 
+            }]  
+        }, {
+            'supplier_id': 7,
+            'items': [{
+                'item_id': 180,
+                'price': 1.29
+            },{
+               'item_id': 245,
+                'price': 1.00
+            }, {
+                'item_id': 216,
+                'price': 0.59
+            },{
+                'item_id': 149,
+                'price': 4.59
+            }]
+        }
+    ]
     return itembundles_final
 
 
@@ -204,75 +242,27 @@ if __name__ == '__main__':
 # In[39]:
 
 
-#request
-items = pd.read_csv('items.csv').drop(columns = 'Unnamed: 0')
-items.rename(columns = {'Invoice':'invoice_id', 'StockCode': 'id', 'Quantity':'quantity'}, inplace = True)
+# #request
+# items = pd.read_csv('items.csv').drop(columns = 'Unnamed: 0')
+# items.rename(columns = {'Invoice':'invoice_id', 'StockCode': 'id', 'Quantity':'quantity'}, inplace = True)
 
-#get Purchase History
-history = getPurchaseHistory()
-df_all = history[['invoice_id', 'id', 'quantity']].append(items)
-df_all.id = [str(i) if type(i) != str else i for i in df_all.id]
+# #get Purchase History
+# history = getPurchaseHistory()
+# df_all = history[['invoice_id', 'id', 'quantity']].append(items)
+# df_all.id = [str(i) if type(i) != str else i for i in df_all.id]
 
-#generate Bundles
-itembundles = createItemBundles(df_all,list(items['id']))
+# #generate Bundles
+# itembundles = createItemBundles(df_all,list(items['id']))
 
-#sample suppliers
-sample = sampleSuppliers()
+# #sample suppliers
+# sample = sampleSuppliers()
 
-#check inventory
-qualified_supplier = checkInventory(sample, itembundles)
+# #check inventory
+# qualified_supplier = checkInventory(sample, itembundles)
 
-#rank suppliers
-#supplier_ranks = rankSuppliers(qualified_suppliers)
+# #rank suppliers
+# #supplier_ranks = rankSuppliers(qualified_suppliers)
 
-#assign/finalize bundles
-#itembundle_final = assignBundles()
-
-
-# In[38]:
-
-
-sampleSuppliers()
-
-
-# In[12]:
-
-
-requests.get('http://a49bced5.ngrok.io/api/supplier')
-
-
-# In[21]:
-
-
-request.get('http://a49bced5.ngrok.io/api/supplier/1/item')
-
-
-# In[23]:
-
-
-a = ['abdfa','adfadfa','adfadf'] + ['adfadf']
-
-
-# In[21]:
-
-
-random.sample(a, k=1)
-
-
-# In[24]:
-
-
-a
-
-
-# In[23]:
-
-
-getPurchaseHistory()
-
-
-# In[ ]:
-
-
-
+# #assign/finalize bundles
+# #itembundle_final = assignBundles()
 
